@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jerrylif.github.io/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/">
+    <link itemprop="mainEntityOfPage" href="https://jerrylif.github.io/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/" class="post-title-link" itemprop="url">论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</a>
+            <a href="/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/" class="post-title-link" itemprop="url">论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-21 20:08:41 / 修改时间：20:11:41" itemprop="dateCreated datePublished" datetime="2022-07-21T20:08:41+08:00">2022-07-21</time>
+              <time title="创建时间：2022-07-21 20:08:41 / 修改时间：20:24:01" itemprop="dateCreated datePublished" datetime="2022-07-21T20:08:41+08:00">2022-07-21</time>
             </span>
 
           
@@ -272,7 +272,7 @@
 <blockquote>
 <p>常见拓扑：bus、ring、mesh、tree</p>
 </blockquote>
-<h3 id="4-Comparison-of-Modularity"><a href="#4-Comparison-of-Modularity" class="headerlink" title="4. Comparison of Modularity"></a>4. Comparison of Modularity</h3><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220718091134789.png" alt="image-20220718091134789"></p>
+<h3 id="4-Comparison-of-Modularity"><a href="#4-Comparison-of-Modularity" class="headerlink" title="4. Comparison of Modularity"></a>4. Comparison of Modularity</h3><p><img src="/.io//../../Pictures/typora/image-20220721202324647.png" alt="image-20220721202324647"></p>
 <table>
 <thead>
 <tr>
@@ -327,7 +327,7 @@
 <ul>
 <li>Turn Restrictions at Boundary Routers</li>
 </ul>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220719102443157.png" alt="image-20220719102443157" style="zoom:67%;" />
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220719102443157.png" alt="image-20220719102443157" style="zoom:67%;">
 
 <ul>
 <li>Boundary Router Placement</li>
@@ -345,7 +345,7 @@
 <p>identfyAllBoundaryTurns函数列举所有可能得边缘上的转向，并将其存储到列表 b_turn[]。</p>
 <p>p_turn储存被禁止的转向动作合集，该合集以递归的形式在SetTurns函数中更新</p>
 <p>变量max：解决所有deadlocks所需的最大禁止转向动作数量</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220719155453591.png" alt="image-20220719155453591" style="zoom:50%;" />
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220719155453591.png" alt="image-20220719155453591" style="zoom:50%;">
 
 <p>更新函数(第16行)用禁止边界转弯的列表pt[]更新CDG，该列表使用Floyd- Warshall全对最短路径算法传播到整个图的通道连接，其提供了来自更新的CDG的连接信息、边界路由器的可达性和跳数</p>
 <p>17行检查指定的目标函数是否有提升，19行，connected函数检查CDG是否是联通的，任何可能导致不连通的转向限制都需要被去除。如果图是联通的，hasloop函数会检查时候有入站通道直接连通到出站通道。如未发现loop，则则更新最佳布局。24行控制递归的深度。若CDG是联通的，但仍有loop出现，27-29行将递归使用SetTurns去加上更多所需的转向限制。</p>
@@ -395,7 +395,7 @@
 <p>均匀随机流量与异构芯片上的工作负载相似，因为实际系统中混合了芯片内、芯片间、芯片到中介、芯片到内存的流量</p>
 <p>位补码流量模式强制所有数据包离开芯粒，强调了中介并且会创建网络热点</p>
 <p>测试结果：</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220720154647052.png" alt="image-20220720154647052" style="zoom: 67%;" />
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220720154647052.png" alt="image-20220720154647052" style="zoom: 67%;">
 
 <p>VC_based:需要更多VC，开销大</p>
 <p>Seg_based:零负载延迟较大，且全局拓扑的不规则导致了这种算法不是最优,可能会导致非最小路径。</p>
@@ -417,10 +417,10 @@
 <ol>
 <li>保证了模块化的设计理念</li>
 </ol>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721100243643.png" alt="image-20220721100243643" style="zoom:50%;" />
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721100243643.png" alt="image-20220721100243643" style="zoom:50%;">
 
 <p>GPU的应用由于其并行性，对延迟的容忍度更高。</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721100302759.png" alt="image-20220721100302759" style="zoom:50%;" />
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721100302759.png" alt="image-20220721100302759" style="zoom:50%;">
 
 <h4 id="Hot-Spot"><a href="#Hot-Spot" class="headerlink" title="Hot Spot"></a>Hot Spot</h4><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721103334612.png" alt="image-20220721103334612"></p>
 <p>在执行hotspot时，可组合方法的高占用链路比shortest path还要少，但是高占用链路在中介层中的分布并不均匀。这是由于转向限制导致的，即部分边缘路由接收了相更多的流量。</p>
@@ -428,13 +428,13 @@
 <h3 id="8-其他应用：针对无中介层的芯粒系统"><a href="#8-其他应用：针对无中介层的芯粒系统" class="headerlink" title="8.其他应用：针对无中介层的芯粒系统"></a>8.其他应用：针对无中介层的芯粒系统</h3><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721105904349.png" alt="image-20220721105904349"></p>
 <p>不同的边缘路由数量，不同的边缘路由分配算法，边缘路由随机分配</p>
 <h4 id="系统的敏感性"><a href="#系统的敏感性" class="headerlink" title="系统的敏感性"></a>系统的敏感性</h4><p>影响因素：系统规模，中介层拓扑，本地拓扑</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721112214837.png" alt="image-20220721112214837" style="zoom: 50%;" />
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721112214837.png" alt="image-20220721112214837" style="zoom: 50%;">
 
 <p>（a）（b）：改变系统资源的分配会导致流量分配变化，但是可组合方式对此并不敏感</p>
 <p>（c）:改变中介层拓扑不影响系统性能，证明了可组合方式的优势</p>
 <p>（d）:每个芯粒具有不同拓扑时，流量分配不均衡，但可组合方式可以更好的分配流量。</p>
 <h4 id="其他封装方式"><a href="#其他封装方式" class="headerlink" title="其他封装方式"></a>其他封装方式</h4><p>(a)若中介层采取无源，则需要用一个通用的中央处理器来代替有源中介层的功能（进行内存控制，系统管理，中介层路由等），其他芯粒以星型拓扑的方式从中央芯片扇出</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721191755689.png" alt="image-20220721191755689" style="zoom:50%;" />
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721191755689.png" alt="image-20220721191755689" style="zoom:50%;">
 
 <p>(b)两个小的CPU之间具有不通过中介层的链路，可视为一个虚拟芯片。</p>
 <p>(c)没有单个“中央芯片”，两个小芯片分别连接到其他芯粒</p>
