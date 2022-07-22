@@ -20,7 +20,7 @@
   </entry>
   <entry>
     <title>论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</title>
-    <url>/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</url>
+    <url>/2022/07/21/Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</url>
     <content><![CDATA[<h1 id="Modular-Routing-Design-for-Chiplet-based-Systems"><a href="#Modular-Routing-Design-for-Chiplet-based-Systems" class="headerlink" title="Modular Routing Design for Chiplet-based Systems"></a>Modular Routing Design for Chiplet-based Systems</h1><h3 id="1-本文的目的"><a href="#1-本文的目的" class="headerlink" title="1.本文的目的"></a>1.本文的目的</h3><p>design  an reusable and modular chiplet</p>
 <h3 id="2-多个Chiplet在组合时的挑战"><a href="#2-多个Chiplet在组合时的挑战" class="headerlink" title="2.多个Chiplet在组合时的挑战"></a>2.多个Chiplet在组合时的挑战</h3><p>单个chip可能是无死锁的，但是在组成multi-SoC的过程中，由于单个chip上的NoC无法了解全局系统级的所有信息，会导致出现问题。</p>
 <h3 id="3-Deadlock"><a href="#3-Deadlock" class="headerlink" title="3.Deadlock"></a>3.Deadlock</h3><blockquote>
@@ -63,7 +63,7 @@
 <blockquote>
 <p>常见拓扑：bus、ring、mesh、tree</p>
 </blockquote>
-<h3 id="4-Comparison-of-Modularity"><a href="#4-Comparison-of-Modularity" class="headerlink" title="4. Comparison of Modularity"></a>4. Comparison of Modularity</h3><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220722095117429.png" alt="image-20220722095117429"></p>
+<h3 id="4-Comparison-of-Modularity"><a href="#4-Comparison-of-Modularity" class="headerlink" title="4. Comparison of Modularity"></a>4. Comparison of Modularity</h3><p><img src="/.io//../pic/image-20220722095518820.png" alt="image-20220722095518820"></p>
 <table>
 <thead>
 <tr>
@@ -118,7 +118,8 @@
 <ul>
 <li>Turn Restrictions at Boundary Routers</li>
 </ul>
-<p><img src="/.io//image-20220722094654619.png" alt="image-20220722094654619"></p>
+<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220719102443157.png" alt="image-20220719102443157" style="zoom:67%;">
+
 <ul>
 <li>Boundary Router Placement</li>
 </ul>
@@ -236,7 +237,7 @@
   </entry>
   <entry>
     <title>论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</title>
-    <url>/2022/07/21/Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</url>
+    <url>/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</url>
     <content><![CDATA[<h1 id="Modular-Routing-Design-for-Chiplet-based-Systems"><a href="#Modular-Routing-Design-for-Chiplet-based-Systems" class="headerlink" title="Modular Routing Design for Chiplet-based Systems"></a>Modular Routing Design for Chiplet-based Systems</h1><h3 id="1-本文的目的"><a href="#1-本文的目的" class="headerlink" title="1.本文的目的"></a>1.本文的目的</h3><p>design  an reusable and modular chiplet</p>
 <h3 id="2-多个Chiplet在组合时的挑战"><a href="#2-多个Chiplet在组合时的挑战" class="headerlink" title="2.多个Chiplet在组合时的挑战"></a>2.多个Chiplet在组合时的挑战</h3><p>单个chip可能是无死锁的，但是在组成multi-SoC的过程中，由于单个chip上的NoC无法了解全局系统级的所有信息，会导致出现问题。</p>
 <h3 id="3-Deadlock"><a href="#3-Deadlock" class="headerlink" title="3.Deadlock"></a>3.Deadlock</h3><blockquote>
@@ -279,8 +280,7 @@
 <blockquote>
 <p>常见拓扑：bus、ring、mesh、tree</p>
 </blockquote>
-<h3 id="4-Comparison-of-Modularity"><a href="#4-Comparison-of-Modularity" class="headerlink" title="4. Comparison of Modularity"></a>4. Comparison of Modularity</h3><img src="/.io//image-20220722095223989.png" alt="image-20220722095223989" style="zoom:67%;">
-
+<h3 id="4-Comparison-of-Modularity"><a href="#4-Comparison-of-Modularity" class="headerlink" title="4. Comparison of Modularity"></a>4. Comparison of Modularity</h3><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220722095117429.png" alt="image-20220722095117429"></p>
 <table>
 <thead>
 <tr>
@@ -335,8 +335,7 @@
 <ul>
 <li>Turn Restrictions at Boundary Routers</li>
 </ul>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220719102443157.png" alt="image-20220719102443157" style="zoom:67%;">
-
+<p><img src="/.io//image-20220722094654619.png" alt="image-20220722094654619"></p>
 <ul>
 <li>Boundary Router Placement</li>
 </ul>
