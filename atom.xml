@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>JerryLi’s blog</title>
+  
+  
+  <link href="https://jerrylif.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://jerrylif.github.io/"/>
+  <updated>2022-07-22T03:26:42.390Z</updated>
+  <id>https://jerrylif.github.io/</id>
+  
+  <author>
+    <name>JerryLi</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://jerrylif.github.io/2022/07/22/test/"/>
+    <id>https://jerrylif.github.io/2022/07/22/test/</id>
+    <published>2022-07-22T03:26:42.000Z</published>
+    <updated>2022-07-22T03:26:42.390Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</title>
+    <link href="https://jerrylif.github.io/2022/07/21/Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/"/>
+    <id>https://jerrylif.github.io/2022/07/21/Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</id>
+    <published>2022-07-21T12:08:41.000Z</published>
+    <updated>2022-07-22T03:25:18.497Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;modular-routing-design-for-chiplet-based-systems&quot;&gt;Modular Routing Design for Chiplet-based Systems&lt;/h1&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="paper reading" scheme="https://jerrylif.github.io/tags/paper-reading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://jerrylif.github.io/2022/07/04/hello-world/"/>
+    <id>https://jerrylif.github.io/2022/07/04/hello-world/</id>
+    <published>2022-07-04T08:48:34.514Z</published>
+    <updated>2022-07-04T08:48:34.514Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
