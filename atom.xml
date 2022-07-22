@@ -6,7 +6,7 @@
   <link href="https://jerrylif.github.io/atom.xml" rel="self"/>
   
   <link href="https://jerrylif.github.io/"/>
-  <updated>2022-07-22T08:55:20.385Z</updated>
+  <updated>2022-07-22T09:05:34.788Z</updated>
   <id>https://jerrylif.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://jerrylif.github.io/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/"/>
     <id>https://jerrylif.github.io/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</id>
     <published>2022-07-21T12:08:41.000Z</published>
-    <updated>2022-07-22T08:55:20.385Z</updated>
+    <updated>2022-07-22T09:05:34.788Z</updated>
     
     
       
@@ -36,30 +36,6 @@
     
     
     <category term="paper reading" scheme="https://jerrylif.github.io/categories/paper-reading/"/>
-    
-    
-    <category term="Chiplet" scheme="https://jerrylif.github.io/tags/Chiplet/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</title>
-    <link href="https://jerrylif.github.io/2022/07/21/Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/"/>
-    <id>https://jerrylif.github.io/2022/07/21/Modular-Routing-Design-for-Chiplet-based-Systems/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</id>
-    <published>2022-07-21T12:08:41.000Z</published>
-    <updated>2022-07-22T08:52:49.029Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;modular-routing-design-for-chiplet-based-systems&quot;&gt;Modular Routing Design for Chiplet-based Systems&lt;/h1&gt;
-&lt;h3</summary>
-        
-      
-    
-    
     
     
     <category term="Chiplet" scheme="https://jerrylif.github.io/tags/Chiplet/"/>
