@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems, JerryLi’s blog">
-    <meta name="description" content="Modular Routing Design for Chiplet-based Systems1.本文的目的design  an reusable and modular chiplet
-2.多个Chiplet在组合时的挑战单个chip可">
+    <meta name="keywords" content="test, JerryLi’s blog">
+    <meta name="description" content="
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@
 
     
 
-    <title>论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems | JerryLi’s blog</title>
+    <title>test | JerryLi’s blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</h1>
+                    <h1 class="description center-align post-title">test</h1>
                 </div>
             </div>
         </div>
@@ -429,13 +429,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/paper-reading/">
-                                <span class="chip bg-color">paper reading</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -447,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-21
+                    2022-07-22
                 </div>
                 
 
@@ -468,214 +464,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Modular-Routing-Design-for-Chiplet-based-Systems"><a href="#Modular-Routing-Design-for-Chiplet-based-Systems" class="headerlink" title="Modular Routing Design for Chiplet-based Systems"></a>Modular Routing Design for Chiplet-based Systems</h1><h3 id="1-本文的目的"><a href="#1-本文的目的" class="headerlink" title="1.本文的目的"></a>1.本文的目的</h3><p>design  an reusable and modular chiplet</p>
-<h3 id="2-多个Chiplet在组合时的挑战"><a href="#2-多个Chiplet在组合时的挑战" class="headerlink" title="2.多个Chiplet在组合时的挑战"></a>2.多个Chiplet在组合时的挑战</h3><p>单个chip可能是无死锁的，但是在组成multi-SoC的过程中，由于单个chip上的NoC无法了解全局系统级的所有信息，会导致出现问题。</p>
-<h3 id="3-Deadlock"><a href="#3-Deadlock" class="headerlink" title="3.Deadlock"></a>3.Deadlock</h3><blockquote>
-<p>以下是几种可能的避免deadlock的路由方案</p>
-</blockquote>
-<ol>
-<li>virtul channel</li>
-</ol>
-<p>前提：设计者预先了解完整的系统的信息</p>
-<p>VC的数量必先按照最大的可能（支持可能的最大规模）进行预配置</p>
-<p>对于不同的本地拓扑结构和路由方案，VC的数量是不同的，在集成多个不同的系统的情况下，VC数量的确定和仲裁逻辑会很复杂</p>
-<ol start="2">
-<li>Flat network</li>
-</ol>
-<p>需要实现了解全局信息</p>
-<ol start="3">
-<li>up&#x2F;down algorithm</li>
-</ol>
-<p>需要了解全局的路由表，且容易造成数据流不均衡，靠近根节点会比较拥堵   BFS搜索</p>
-<ol start="4">
-<li>Segment-based Routing</li>
-</ol>
-<p>turn restrictions 回合限制</p>
-<p>起始片段 ： 不设置循环限制</p>
-<p>常规片段：在所有路由上设置双向循环限制</p>
-<p>单一片段（仅有一个链路组成）：任何流量都不允许通过这个链路。</p>
-<ol start="5">
-<li>Nue(destination-based oblivious routing)</li>
-</ol>
-<p>Dijkstra’s algorithm :一种寻找一个点到其他点的最短路径的算法</p>
-<ol start="6">
-<li>Hierarchical Approaches</li>
-</ol>
-<p>each node only knows about the local nodes within its level.</p>
-<p>传输到其它层的数据，首先要经过本层的boundary 节点</p>
-<p>由于各层节点是相对独立的，因此各层可以使用不同的结构和不同的优化方法</p>
-<blockquote>
-<p>avoid global deadlocks 这是chiplet的核心问题</p>
-</blockquote>
-<blockquote>
-<p>常见拓扑：bus、ring、mesh、tree</p>
-</blockquote>
-<h3 id="4-Comparison-of-Modularity"><a href="#4-Comparison-of-Modularity" class="headerlink" title="4. Comparison of Modularity"></a>4. Comparison of Modularity</h3><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220722095117429.png" alt="image-20220722095117429"></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>VC_based</th>
-<th>Flat NoCs</th>
-<th>Hierarchical</th>
-<th>composable</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Independently Designed Chiplets</td>
-<td>要求事先了解整体就够以明确VC数量，或者直接过量提供VC</td>
-<td>需要整体SoC的信息来避免死锁</td>
-<td>需要整体SoC的信息来避免死锁</td>
-<td>在单个Chiplet中进行设计和优化</td>
-</tr>
-<tr>
-<td>Enables Local Optimization</td>
-<td>可以在任一级别上进行NoC的优化</td>
-<td>需要全局SoC的信息，其优化会导致整体的拓扑结构和路由算法发生变化</td>
-<td>可以进行一些Chiplet层级上的优化，但是仍需要一些全局信息以避免死锁</td>
-<td>可以在任一级别上进行NoC的优化</td>
-</tr>
-<tr>
-<td>Global CDG Not Required</td>
-<td>灵活性较强，只需要一些信息来确定 VC的分配</td>
-<td>chip上的所有net都完成之后才可以进行路由分配，且修改本地网络，会影响CDG</td>
-<td>chip上的所有net都完成之后才可以进行路由分配，且修改本地网络，会影响CDG</td>
-<td>在独立的芯片设计之间不需要共享依赖信息，只需要与SoC integrator共享一些有限的信息</td>
-</tr>
-<tr>
-<td>Future-proof Chiplets</td>
-<td>采用过量提供VC的方式开销过大</td>
-<td>几乎无法重用</td>
-<td>几乎无法重用</td>
-<td>容易适配</td>
-</tr>
-<tr>
-<td>Hardware Cost</td>
-<td>大</td>
-<td>小</td>
-<td>小</td>
-<td>小</td>
-</tr>
-</tbody></table>
-<h3 id="5-影响Chiplet-Design的主要因素："><a href="#5-影响Chiplet-Design的主要因素：" class="headerlink" title="5. 影响Chiplet Design的主要因素："></a>5. 影响Chiplet Design的主要因素：</h3><ul>
-<li>Number of Boundary Router</li>
-</ul>
-<p>边缘路由的数量直接决定的chiplet片外的流量带宽</p>
-<p>边缘路由的最大数量与chiplet的结构有关，对于n*n的mesh，一般采用n个边缘路由</p>
-<ul>
-<li>Turn Restrictions at Boundary Routers</li>
-</ul>
-<p><img src="/.io//image-20220722094654619.png" alt="image-20220722094654619"></p>
-<ul>
-<li>Boundary Router Placement</li>
-</ul>
-<p>guidelines:</p>
-<p>1.不集中的放置边缘路由节点，以防产生局部的拥堵</p>
-<p>2.需保证其出站和入站的可达性均衡</p>
-<p>3.选择基数（我理解为链接的节点数较少的）较少的路由</p>
-<ul>
-<li>Boundary Router Placement and Turn Restriction Algorithm</li>
-</ul>
-<p>算法决定了边缘路由的布局和转向限制的设置</p>
-<p>PlaceBoundaryRouter 函数通过迭代，从所有可能的边缘路由布局中寻找最优的</p>
-<p>SetTurns函数用于设置转向限制，其使用启发式检测所有的边缘转向，随时根据现有的限制更新更好的布局。</p>
-<p>identfyAllBoundaryTurns函数列举所有可能得边缘上的转向，并将其存储到列表 b_turn[]。</p>
-<p>p_turn储存被禁止的转向动作合集，该合集以递归的形式在SetTurns函数中更新</p>
-<p>变量max：解决所有deadlocks所需的最大禁止转向动作数量</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220719155453591.png" alt="image-20220719155453591" style="zoom:50%;">
-
-<p>更新函数(第16行)用禁止边界转弯的列表pt[]更新CDG，该列表使用Floyd- Warshall全对最短路径算法传播到整个图的通道连接，其提供了来自更新的CDG的连接信息、边界路由器的可达性和跳数</p>
-<p>17行检查指定的目标函数是否有提升，19行，connected函数检查CDG是否是联通的，任何可能导致不连通的转向限制都需要被去除。如果图是联通的，hasloop函数会检查时候有入站通道直接连通到出站通道。如未发现loop，则则更新最佳布局。24行控制递归的深度。若CDG是联通的，但仍有loop出现，27-29行将递归使用SetTurns去加上更多所需的转向限制。</p>
-<h3 id="6-NoC中介的配置"><a href="#6-NoC中介的配置" class="headerlink" title="6. NoC中介的配置"></a>6. NoC中介的配置</h3><p>在不加入Chiplet的时候，NoC interposer本身的网络也要保证无死锁。</p>
-<p>1.需要保证，在给定的限制下，每个边缘路由都能到达片上节点（endpoints）</p>
-<p>2.有选择的使用两个边缘路由之间的拓扑距离和可到达的片上节点，来优化路由距离和平衡负载</p>
-<p>信息可以以列表格式枚举，eg:节点x可以由边缘节点y到达</p>
-<p>不需要Chiplet内部的NoC信息 </p>
-<ul>
-<li>中介层路由方案</li>
-</ul>
-<p>对于发往chiplet的信息，算法决定了哪一个边缘路由节点将接收这个消息。（选择的依据是平衡网络负载和最小化路径长度）</p>
-<p>算法：</p>
-<p>1.对于指定的边缘路由节点i，只能由i到达的节点集合为$A_i$，</p>
-<p>2.对于其他可以由不止一个边缘节点到达的节点，集合$C_i$包含了拓扑距离节点i较近的节点（相对于其他边缘节点），对于不同的边缘节点，$C_i \cap C_j &#x3D; \Phi$</p>
-<p>3.对于到两个或多个边缘节点距离相等的节点，使用$E_{ij}$来表示。大于两个相同距离节点时，仅取其中两个。</p>
-<p>4.将片上节点（on_chip nodes）分配到边缘路由节点的步骤：</p>
-<p>1)选择一个集合$A_i$元素最少的节点i</p>
-<p>2)一个一个的从$C_i$中向$A_i$分配，直至其$A_i$不是最小的集合，$C_i$不够用就用$E_{ij}$ </p>
-<p>3)重复上述步骤直至C、E均为空集</p>
-<p>算法运行结束后，对于边缘路由节点的节点分配信息都被存储到集合A中，通过这些信息，中阶层的路由表得到相应的配置。</p>
-<ul>
-<li>免死锁和连通性</li>
-</ul>
-<p>单个chiplet是无死锁的（预设条件）</p>
-<p>假设循环路径：$r_1,l_1,r_2,l_2……r_n,l_n$，若这条路径上的路由和链接都属于同一个chiplet，则与预设相悖。若其中一部分属于中阶层或其他chiplet，则可以将这部分节点抽象为一个x节点。因此循环路径可以表示为：$r_1,l_1,r_2,l_2…..x….r_n,l_n$，由于新的循环中删除了包含x的循环中所有循环依赖项，因此新循环无死锁。</p>
-<p>边缘节点上的转向限制不针对内部节点，因此，芯粒内部节点总可以到达边缘节点，并到达中介层，中介层的节点一定能到达其他芯粒的边缘节点。故系统是符合连接性的。</p>
-<ul>
-<li>微架构问题</li>
-</ul>
-<p>每个芯粒会执行两份路由表。一份是芯粒内部的路由表，芯粒的设计者可以使用任意方式填充这份路由表。另一份路由表则将出站流量定向到合适的边缘路由节点。</p>
-<p> 这样的形式就为整个系统中的所有路由节点制定了一个全局的ID。</p>
-<p>类似于检测系统中可用的内存和计算资源，可组合的基于中阶层的SoC也需要一个类似的协议来进行系统配置：检测可用的NoC节点并赋予其唯一的ID，填充和计算第二份路由表。此配置仅在集成SoC时进行一次。</p>
-<p>（也可以提供hook，后续更新）</p>
-<p>每一个NI都有一个查找表，用于将出站的数据包映射到相应ID的边缘路由节点。边缘路由ID会插入到数据包的head flit中，直至数据包离开此chiplet。查找表需要考虑最大的系统面积。</p>
-<p>路由表的面积通常远小于交叉开关和buffer</p>
-<p>第二份路由表的大小与边缘路由的数量成正比，因此比第一份路由表要小。</p>
-<p>执行interposer router的两种方式：</p>
-<p>1.按照最大的系统规格提供路由表，这会导致最大的interposer router表</p>
-<p>2.增加另外一层目标映射，以将目标节点的ID转换为边缘节点的ID，这样可以减小路由表，但是边缘路由会复杂化。</p>
-<p>总的来说，与规范的两级路由器相比，此设计不产生额外的功率或面积或时序影响。</p>
-<h3 id="7-性能评估"><a href="#7-性能评估" class="headerlink" title="7.性能评估"></a>7.性能评估</h3><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220720103432688.png" alt="image-20220720103432688"></p>
-<p>比较对象：</p>
-<p>VC_based 、up&#x2F;down 、segment_based、Nue_routing、shortest path（理想）</p>
-<p>尽管理想模型也会出现堵塞现象，但是其性能仍然优于作者使用的模型。</p>
-<p>测试的流量有归一化（均匀）随机流量和位补码流量</p>
-<p>均匀随机流量与异构芯片上的工作负载相似，因为实际系统中混合了芯片内、芯片间、芯片到中介、芯片到内存的流量</p>
-<p>位补码流量模式强制所有数据包离开芯粒，强调了中介并且会创建网络热点</p>
-<p>测试结果：</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220720154647052.png" alt="image-20220720154647052" style="zoom: 67%;">
-
-<p>VC_based:需要更多VC，开销大</p>
-<p>Seg_based:零负载延迟较大，且全局拓扑的不规则导致了这种算法不是最优,可能会导致非最小路径。</p>
-<p>up\down:根节点附近易发生拥塞。</p>
-<p>Nue：表现优于本文的可组合方法。但是其需要全局信息。</p>
-<p>shortest path（理想）：局部突发流量会导致拥塞或者负载不均衡，因此实际上这种方法也不是完全理想的。</p>
-<ul>
-<li>可组合方法的不足之处：</li>
-</ul>
-<ol>
-<li><p>由于转向限制，仍然会导致一些负载不均衡</p>
-</li>
-<li><p>理想的网络有更多的VC来处理拥塞</p>
-</li>
-</ol>
-<ul>
-<li>优越之处：</li>
-</ul>
-<ol>
-<li>保证了模块化的设计理念</li>
-</ol>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721100243643.png" alt="image-20220721100243643" style="zoom:50%;">
-
-<p>GPU的应用由于其并行性，对延迟的容忍度更高。</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721100302759.png" alt="image-20220721100302759" style="zoom:50%;">
-
-<h4 id="Hot-Spot"><a href="#Hot-Spot" class="headerlink" title="Hot Spot"></a>Hot Spot</h4><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721103334612.png" alt="image-20220721103334612"></p>
-<p>在执行hotspot时，可组合方法的高占用链路比shortest path还要少，但是高占用链路在中介层中的分布并不均匀。这是由于转向限制导致的，即部分边缘路由接收了相更多的流量。</p>
-<p>up&#x2F;down的高占用链路集中于根节点周围。</p>
-<h3 id="8-其他应用：针对无中介层的芯粒系统"><a href="#8-其他应用：针对无中介层的芯粒系统" class="headerlink" title="8.其他应用：针对无中介层的芯粒系统"></a>8.其他应用：针对无中介层的芯粒系统</h3><p><img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721105904349.png" alt="image-20220721105904349"></p>
-<p>不同的边缘路由数量，不同的边缘路由分配算法，边缘路由随机分配</p>
-<h4 id="系统的敏感性"><a href="#系统的敏感性" class="headerlink" title="系统的敏感性"></a>系统的敏感性</h4><p>影响因素：系统规模，中介层拓扑，本地拓扑</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721112214837.png" alt="image-20220721112214837" style="zoom: 50%;">
-
-<p>（a）（b）：改变系统资源的分配会导致流量分配变化，但是可组合方式对此并不敏感</p>
-<p>（c）:改变中介层拓扑不影响系统性能，证明了可组合方式的优势</p>
-<p>（d）:每个芯粒具有不同拓扑时，流量分配不均衡，但可组合方式可以更好的分配流量。</p>
-<h4 id="其他封装方式"><a href="#其他封装方式" class="headerlink" title="其他封装方式"></a>其他封装方式</h4><p>(a)若中介层采取无源，则需要用一个通用的中央处理器来代替有源中介层的功能（进行内存控制，系统管理，中介层路由等），其他芯粒以星型拓扑的方式从中央芯片扇出</p>
-<img src="/home/jerryli/.config/Typora/typora-user-images/image-20220721191755689.png" alt="image-20220721191755689" style="zoom:50%;">
-
-<p>(b)两个小的CPU之间具有不通过中介层的链路，可视为一个虚拟芯片。</p>
-<p>(c)没有单个“中央芯片”，两个小芯片分别连接到其他芯粒</p>
-<p>b、c两种方式设计者应当保证两个小芯片之间无死锁。</p>
+                
 
                 
             </div>
@@ -702,7 +491,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jerrylif.github.io/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/">https://jerrylif.github.io/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/</a>
+                    <a href="https://jerrylif.github.io/2022/07/22/test/">https://jerrylif.github.io/2022/07/22/test/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -739,11 +528,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/paper-reading/">
-                                    <span class="chip bg-color">paper reading</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -920,13 +705,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2022/07/21/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Modular-Routing-Design-for-Chiplet-based-Systems/">
+                <a href="/2022/07/22/test/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="test">
                         
-                        <span class="card-title">论文阅读-Modular_Routing_Design_for_Chiplet-based_Systems</span>
+                        <span class="card-title">test</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -937,7 +722,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-22
                             </span>
                         <span class="publish-author">
                             
@@ -948,14 +733,6 @@
                     </div>
                 </div>
 
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/paper-reading/">
-                        <span class="chip bg-color">paper reading</span>
-                    </a>
-                    
-                </div>
                 
             </div>
         </div>
