@@ -108,6 +108,14 @@
     <div class="post-info">
         <div class="tag-list">
             
+                
+                    <span class="post-tag">
+                        <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
+                            工具使用
+                        </a>
+                    </span>    
+                           
+            
         </div>
         <div class="post-title">
             
@@ -127,9 +135,52 @@
     </div>
 </div>
     <div class="post-content">
-    <h3 id="1-Git-使用步骤"><a href="#1-Git-使用步骤" class="headerlink" title="1. Git 使用步骤"></a>1. Git 使用步骤</h3><p>① 在本地创建ssh key：</p>
+    <h3 id="1-Git-使用教程"><a href="#1-Git-使用教程" class="headerlink" title="1. Git 使用教程"></a>1. Git 使用教程</h3><h4 id="1-1-创建与提交"><a href="#1-1-创建与提交" class="headerlink" title="1.1 创建与提交"></a>1.1 创建与提交</h4><ol>
+<li>在本地创建ssh key：</li>
+</ol>
 <p><code>ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</code></p>
-<p>② 输入上述命令后~&#x2F;.ssh中将出现一个id_rsd.pub文件，将该文件中的key复制到github的ssh key配置页面：</p>
+<ol start="2">
+<li>输入上述命令后~&#x2F;.ssh中将出现一个id_rsd.pub文件，将该文件中的key复制到github的ssh key配置页面：</li>
+</ol>
+<p><img src="file:///C:/Users/Jingyu_Li/Pictures/Typedown/079c44a8-43d4-46c0-95ee-b9d32e7f5f9a.png" alt="079c44a8-43d4-46c0-95ee-b9d32e7f5f9a"></p>
+<ol start="3">
+<li><p>输入<code> ssh -T git@github.com</code>确认是否key配置成功</p>
+</li>
+<li><p>配置信息：</p>
+</li>
+</ol>
+<p><code>git config --global user.name &quot;your name&quot;  git config --global user.email &quot;your_email@youremail.com&quot;</code></p>
+<ol start="5">
+<li>在github上创建一个仓库，并在本地关联该仓库，此处有两种办法：</li>
+</ol>
+<p>① 直接将仓库clone到本地，进入仓库目录即可：</p>
+<p><code>git clone git@github.com:JerryLiF/Chiplet_based_DSE_Simulator.git</code></p>
+<p>② 建立一个与github上仓库同名的本地目录，进入该目录并输入<code>git init</code>初始化仓库。而后输入：<code>git remote add origin git@github.com:yourName/yourRepo.git</code>关联GitHub上的远端仓库。</p>
+<p><mark>注意：旧版本git初始化后默认的分支为master，但新版本GithHub默认分支为main，为了保持一致需先将git升级到2.28版本之后，通过<code>git config --global init.defaultBranch main</code>命令进行全局修改。</mark></p>
+<ol start="6">
+<li><p>创建新文件或修改文件后，使用<code>git add *</code>命令将文件提交到暂存区</p>
+</li>
+<li><p>将改动提交到HEAD：<code>git commit -m &quot;备注&quot;</code></p>
+</li>
+<li><p>将改动提交到远程仓库：<code>git push origin 分支名称</code></p>
+</li>
+<li><p>分支操作：</p>
+</li>
+</ol>
+<p>创建新分支：<code>git checkout -b feature_x</code></p>
+<p>切换分支：<code>git checkout master</code></p>
+<p>删除分支：<code>git branch -d feature_x</code></p>
+<h4 id="1-2-更新与合并"><a href="#1-2-更新与合并" class="headerlink" title="1.2 更新与合并"></a>1.2 更新与合并</h4><p>将远端仓库的更新同步到本地：<code>git pull</code></p>
+<p>合并其他分支到当前分支：<code>git merge &lt;branch&gt;</code></p>
+<p>查看两个分支的差异：<code>git diff &lt;source_branch&gt; &lt;target_branch&gt;</code></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h3 id="2-GitHub使用"><a href="#2-GitHub使用" class="headerlink" title="2. GitHub使用"></a>2. GitHub使用</h3><h4 id="2-1-在vscode中向GitHub提交代码"><a href="#2-1-在vscode中向GitHub提交代码" class="headerlink" title="2.1 在vscode中向GitHub提交代码"></a>2.1 在vscode中向GitHub提交代码</h4><ol>
+<li><p>使用vscode打开本地仓库的文件夹</p>
+</li>
+<li><p>进入源代码管理页面：</p>
+</li>
+</ol>
+<p><img src="file:///D:/NUDT/2024-11-12_16-53.png"></p>
+<h3 id="3-基于Github和Hexo搭建个人博客"><a href="#3-基于Github和Hexo搭建个人博客" class="headerlink" title="3. 基于Github和Hexo搭建个人博客"></a>3. 基于Github和Hexo搭建个人博客</h3><p>常用命令：<br>    hexo new “postName” #新建文章<br>    hexo new page “pageName” #新建页面<br>    hexo generate #生成静态页面至public目录<br>    hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）<br>    hexo deploy #部署到GitHub<br>    hexo help  # 查看帮助<br>    hexo version  #查看Hexo的版本</p>
 
 </div> 
 
