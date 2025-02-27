@@ -49,22 +49,47 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/09/02/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>CMDS</title>
+    <url>/2025/02/27/CMDS/</url>
+    <content><![CDATA[<h2 id="INTRO"><a href="#INTRO" class="headerlink" title="INTRO"></a>INTRO</h2><p>ZigZag, Timeloop, Maestro等著名的工作在优化DNN的数据流时将每一层的都看作是一个独立部分，没有考虑到层切换时不同数据流造成的影响，特别是不同数据流对内存使用方式的影响，这可能造成内存读写时的能量浪费。本文提出了一种跨层内存感知数据流调度器，考虑了不同层的内存布局需求对时延和功耗的影响，相比于现有工作能够得到能效更好的数据流安排方案。</p>
+<h2 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h2><h3 id="multi-bank-memory-arch"><a href="#multi-bank-memory-arch" class="headerlink" title="multi-bank memory arch"></a>multi-bank memory arch</h3><img src="https://s21.ax1x.com/2025/02/27/pE3cQdU.png" title="" alt="" data-align="center">
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>BD：bank的位宽</p>
+<p>PD：外部对mem的读写位宽</p>
+<p>MD：整个mem的物理位宽 &#x3D; BankNum * BD</p>
+<img src="https://s21.ax1x.com/2025/02/27/pE30F3V.png" title="" alt="" data-align="center">
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>上图展示了内存布局对不同数据流产生的影响：</p>
+<p>BD:</p>
+<p>Case1中Conv1层的输出，每4个同OX的数据存储到1个Bank的同一行，当Conv2需要每个周期消耗4个相同OY的数据时，每次读Bank都只有25%的有效数据。这会导致PE获取的数据不足，增加延迟 ；访问mem的总功耗增加。</p>
+<p>Case2中Conv1按OY存储就可以保证两层的memory layout兼容。</p>
+<p>PD：</p>
+<p>multi-bank 的组合支持不同的WPD和RPD。例如case2中数据按OY &#x3D; 4的方式存储在Bank中，其他OX可以存储在不同bank的相同行，也可以存储在同一bank的不同行，这取决于Conv2采用的数据流。可用的PD选择必须包含可用的BD。</p>
+<p>MD:</p>
+<p>Case2采用了OX&#x3D;2 ，K&#x3D;2的内存布局，充分利用了MD的宽度同时支持特定的WPD和RPD。</p>
+<h3 id="EXPERIMENT"><a href="#EXPERIMENT" class="headerlink" title="EXPERIMENT"></a>EXPERIMENT</h3><p>对比对象：无灵活数据接口的ACC &amp; 具有重排序缓冲区的ACC</p>
+<h4 id="有效PD"><a href="#有效PD" class="headerlink" title="有效PD"></a>有效PD</h4><p>PD资源利用率不足有两种可能：</p>
+<ol>
+<li><p>给定数据流与BD数据布局不匹配</p>
+</li>
+<li><p>给定数据流与MD布局不匹配导致一次只能同时访问较少的Bank</p>
+</li>
+</ol>
+<p>总之就是PE所需的数据和内存中的数据布局导致PD的利用不充分，进而导致能量和功耗损失。为了评估这一功耗损失，文章提出了计算“有效PD”的方法：</p>
+<img title="" src="https://s21.ax1x.com/2025/02/27/pE3b4Rx.png" alt="" data-align="center">
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>将有效PD带入CMDS即可更加实际的评估内存布局带来的影响。</p>
+<h4 id="Reshuffling-buffer-cost"><a href="#Reshuffling-buffer-cost" class="headerlink" title="Reshuffling buffer cost"></a>Reshuffling buffer cost</h4><p>重新排序缓冲区放置在内存和PE之间，所需的寄存器数量为按照第 j 层 SU 的 RPD 数据布局重组数据而必须缓冲的第 i 层最终输出的数量。在不采取内存感知数据流的情况下，可以避免低效的内存访问，但有面积开销。</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>将（1）ZigZag框架+含有Reshuffling buffer的架构和（2）ZigZag框架+普通mem架构与（3）CMDS框架+普通mem架构进行对比，可以发现（3）在使得总能耗和延迟仅有2-4%增加的情况下可以比（1）减小3-11%的面积开销，比（2）减少10-500%的能量延迟开销。</p>
+<p>通过实验，本文还发现采用BD&lt;PD&lt;MD，且MD较大的参数会取得较好的效果。</p>
+<p>存储器组的数量、CMDS 的灵活性和实现存储器组所需的面积之间存在权衡。</p>
 ]]></content>
+      <categories>
+        <category>gallery</category>
+      </categories>
+      <tags>
+        <tag>Paper Notes</tag>
+      </tags>
   </entry>
   <entry>
     <title>Git使用教程</title>
@@ -120,42 +145,21 @@
       </tags>
   </entry>
   <entry>
-    <title>CMDS</title>
-    <url>/2025/02/27/CMDS/</url>
-    <content><![CDATA[<p>INTRO</p>
-<p>ZigZag, Timeloop, Maestro等著名的工作在优化DNN的数据流时将每一层的都看作是一个独立部分，没有考虑到层切换时不同数据流造成的影响，特别是不同数据流对内存使用方式的影响，这可能造成内存读写时的能量浪费。本文提出了一种跨层内存感知数据流调度器，考虑了不同层的内存布局需求对时延和功耗的影响，相比于现有工作能够得到能效更好的数据流安排方案。</p>
-<h2 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h2><h3 id="multi-bank-memory-arch"><a href="#multi-bank-memory-arch" class="headerlink" title="multi-bank memory arch"></a>multi-bank memory arch</h3><p><img src="https://s21.ax1x.com/2025/02/27/pE3cQdU.png"></p>
-<p>BD：bank的位宽</p>
-<p>PD：外部对mem的读写位宽</p>
-<p>MD：整个mem的物理位宽 &#x3D; BankNum * BD</p>
-<p><img src="https://s21.ax1x.com/2025/02/27/pE30F3V.png"></p>
-<p>上图展示了内存布局对不同数据流产生的影响：</p>
-<p>BD:</p>
-<p>Case1中Conv1层的输出，每4个同OX的数据存储到1个Bank的同一行，当Conv2需要每个周期消耗4个相同OY的数据时，每次读Bank都只有25%的有效数据。这会导致PE获取的数据不足，增加延迟 ；访问mem的总功耗增加。</p>
-<p>Case2中Conv1按OY存储就可以保证两层的memory layout兼容。</p>
-<p>PD：</p>
-<p>multi-bank 的组合支持不同的WPD和RPD。例如case2中数据按OY &#x3D; 4的方式存储在Bank中，其他OX可以存储在不同bank的相同行，也可以存储在同一bank的不同行，这取决于Conv2采用的数据流。可用的PD选择必须包含可用的BD。</p>
-<p>MD:</p>
-<p>Case2采用了OX&#x3D;2 ，K&#x3D;2的内存布局，充分利用了MD的宽度同时支持特定的WPD和RPD。</p>
-<h3 id="EXPERIMENT"><a href="#EXPERIMENT" class="headerlink" title="EXPERIMENT"></a>EXPERIMENT</h3><p>对比对象：无灵活数据接口的ACC &amp; 具有重排序缓冲区的ACC</p>
-<h4 id="有效PD"><a href="#有效PD" class="headerlink" title="有效PD"></a>有效PD</h4><p>PD资源利用率不足有两种可能：</p>
-<ol>
-<li><p>给定数据流与BD数据布局不匹配</p>
-</li>
-<li><p>给定数据流与MD布局不匹配导致一次只能同时访问较少的Bank</p>
-</li>
-</ol>
-<p>总之就是PE所需的数据和内存中的数据布局导致PD的利用不充分，进而导致能量和功耗损失。为了评估这一功耗损失，文章提出了计算“有效PD”的方法：</p>
-<img src="cf0e5451-cba6-4141-9afe-1960d93540d6.png" title="" alt="cf0e5451-cba6-4141-9afe-1960d93540d6" data-align="center">
+    <title>Hello World</title>
+    <url>/2024/09/02/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>将有效PD带入CMDS即可更加实际的评估内存布局带来的影响。</p>
-<h4 id="Reshuffling-buffer-cost"><a href="#Reshuffling-buffer-cost" class="headerlink" title="Reshuffling buffer cost"></a>Reshuffling buffer cost</h4><p>重新排序缓冲区放置在内存和PE之间，所需的寄存器数量为按照第 j 层 SU 的 RPD 数据布局重组数据而必须缓冲的第 i 层最终输出的数量。在不采取内存感知数据流的情况下，可以避免低效的内存访问，但有面积开销。</p>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>将（1）ZigZag框架+含有Reshuffling buffer的架构和（2）ZigZag框架+普通mem架构与（3）CMDS框架+普通mem架构进行对比，可以发现（3）在使得总能耗和延迟仅有2-4%增加的情况下可以比（1）减小3-11%的面积开销，比（2）减少10-500%的能量延迟开销。</p>
-<p>通过实验，本文还发现采用BD&lt;PD&lt;MD，且MD较大的参数会取得较好的效果。</p>
-<p>存储器组的数量、CMDS 的灵活性和实现存储器组所需的面积之间存在权衡。</p>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <tags>
-        <tag>Paper Notes</tag>
-      </tags>
   </entry>
 </search>

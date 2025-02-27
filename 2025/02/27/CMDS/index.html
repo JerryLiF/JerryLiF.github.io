@@ -149,18 +149,19 @@
     </div>
     <div class="post-img">
         
-            <div class="h-line-primary"></div>
+            <img src="https://s21.ax1x.com/2025/02/27/pE30i90.png" alt="featured_image">
               
     </div>
 </div>
     <div class="post-content">
-    <p>INTRO</p>
-<p>ZigZag, Timeloop, Maestro等著名的工作在优化DNN的数据流时将每一层的都看作是一个独立部分，没有考虑到层切换时不同数据流造成的影响，特别是不同数据流对内存使用方式的影响，这可能造成内存读写时的能量浪费。本文提出了一种跨层内存感知数据流调度器，考虑了不同层的内存布局需求对时延和功耗的影响，相比于现有工作能够得到能效更好的数据流安排方案。</p>
-<h2 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h2><h3 id="multi-bank-memory-arch"><a href="#multi-bank-memory-arch" class="headerlink" title="multi-bank memory arch"></a>multi-bank memory arch</h3><p><img src="https://s21.ax1x.com/2025/02/27/pE3cQdU.png"></p>
+    <h2 id="INTRO"><a href="#INTRO" class="headerlink" title="INTRO"></a>INTRO</h2><p>ZigZag, Timeloop, Maestro等著名的工作在优化DNN的数据流时将每一层的都看作是一个独立部分，没有考虑到层切换时不同数据流造成的影响，特别是不同数据流对内存使用方式的影响，这可能造成内存读写时的能量浪费。本文提出了一种跨层内存感知数据流调度器，考虑了不同层的内存布局需求对时延和功耗的影响，相比于现有工作能够得到能效更好的数据流安排方案。</p>
+<h2 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h2><h3 id="multi-bank-memory-arch"><a href="#multi-bank-memory-arch" class="headerlink" title="multi-bank memory arch"></a>multi-bank memory arch</h3><img src="https://s21.ax1x.com/2025/02/27/pE3cQdU.png" title="" alt="" data-align="center">
+
 <p>BD：bank的位宽</p>
 <p>PD：外部对mem的读写位宽</p>
 <p>MD：整个mem的物理位宽 &#x3D; BankNum * BD</p>
-<p><img src="https://s21.ax1x.com/2025/02/27/pE30F3V.png"></p>
+<img src="https://s21.ax1x.com/2025/02/27/pE30F3V.png" title="" alt="" data-align="center">
+
 <p>上图展示了内存布局对不同数据流产生的影响：</p>
 <p>BD:</p>
 <p>Case1中Conv1层的输出，每4个同OX的数据存储到1个Bank的同一行，当Conv2需要每个周期消耗4个相同OY的数据时，每次读Bank都只有25%的有效数据。这会导致PE获取的数据不足，增加延迟 ；访问mem的总功耗增加。</p>
@@ -178,7 +179,7 @@
 </li>
 </ol>
 <p>总之就是PE所需的数据和内存中的数据布局导致PD的利用不充分，进而导致能量和功耗损失。为了评估这一功耗损失，文章提出了计算“有效PD”的方法：</p>
-<img src="cf0e5451-cba6-4141-9afe-1960d93540d6.png" title="" alt="cf0e5451-cba6-4141-9afe-1960d93540d6" data-align="center">
+<img title="" src="https://s21.ax1x.com/2025/02/27/pE3b4Rx.png" alt="" data-align="center">
 
 <p>将有效PD带入CMDS即可更加实际的评估内存布局带来的影响。</p>
 <h4 id="Reshuffling-buffer-cost"><a href="#Reshuffling-buffer-cost" class="headerlink" title="Reshuffling buffer cost"></a>Reshuffling buffer cost</h4><p>重新排序缓冲区放置在内存和PE之间，所需的寄存器数量为按照第 j 层 SU 的 RPD 数据布局重组数据而必须缓冲的第 i 层最终输出的数量。在不采取内存感知数据流的情况下，可以避免低效的内存访问，但有面积开销。</p>
