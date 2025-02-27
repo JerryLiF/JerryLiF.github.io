@@ -1,54 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>NoC of Xilinx ACAP</title>
-    <url>/2024/11/13/NoC-of-Xilinx-ACAP/</url>
-    <content><![CDATA[<h1 id="Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture"><a href="#Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture" class="headerlink" title="Network-on-Chip Programmable Platform in VersalTM ACAP Architecture"></a>Network-on-Chip Programmable Platform in VersalTM ACAP Architecture</h1><h2 id="1-INTRO"><a href="#1-INTRO" class="headerlink" title="1 INTRO"></a>1 INTRO</h2><p>在 FPGA上设计的电路日渐复杂，存储器带宽日渐增加和设计者更加关注面向需求的专用电路设计这三个因素共同推动着 FPGA 架构的演进。</p>
-<p>随着制程提升，金属的线电阻不断增加，造成互连延迟增加，FPGA 布线时关键路径上的时延增加。</p>
-<p>传统的 FPGA 互连面临两个问题，一是逻辑资源，二是设计的最高频率和关键路径时延无法被事先得知。<br>2 NoC</p>
-<hr>
-<ul>
-<li>支持 QoS</li>
-</ul>
-<p>Quality of service is the ability to provide different priorities to different applications, users, or data <a href="https://en.wikipedia.org/wiki/Traffic_flow_(computer_networking)">flows</a>, or to guarantee a certain level of performance to a data flow.</p>
-<ul>
-<li>包含虚拟通道</li>
-</ul>
-<h2 id="3-Versal-NoC"><a href="#3-Versal-NoC" class="headerlink" title="3 Versal NoC"></a>3 Versal NoC</h2><p>Versal 架构</p>
-<img title="arch" src="https://s21.ax1x.com/2024/11/13/pAcvzz6.png" alt="" data-align="center">
-
-<p>NoC 在芯片中扮演两个角色：</p>
-<ol>
-<li>为芯片中所有资源提供永久的可统一寻址的互连</li>
-<li>可以代替可编程逻辑提供开关和路由功能</li>
-</ol>
-<p>Versal NoC 数据包传输结构：AXI&#x2F;AXI-S</p>
-<img title="" src="https://s21.ax1x.com/2024/11/13/pAcvvJ1.png" alt="loading-ag-351" data-align="center">
-
-<p>Versal NoC 拓扑：</p>
-<img title="" src="https://s21.ax1x.com/2024/11/13/pAcxpQK.png" alt="" data-align="center">
-
-<p>Versal NoC 可以分为两部分：HNoC 和 VNoC</p>
-<p>HNoC 水平分布，上下连接芯片中的硬核，VNoC 垂直分布，连接可编程结构。 VNoC 不是独立的互连结构，其像 DSP 一样作为一个硬核集成在可编程结构中。</p>
-<p>Versal NoC 的一个重要作用是高效管理各模块对 DDR 的访问，VNoC 的频率和带宽与 DDR 相匹配：</p>
-<p><mark>For example, a device with 64 bit DDR4 3200 has 25.6GBps bandwidth. A VNoC running at 1GHz has two physical channels supporting upto 16GBps each per direction.</mark></p>
-<p>NoC 支持可编程交织式的使用内存，将所有内存看做一个存储池，交织式的在每一个 DDR 上操作 128B 到 4KB 的空间。</p>
-<p> Versal NoC 的路由表是可编程的（不同的设计用到的资源和连接不同），NoC 在多个 DIE 上是逻辑统一的。 </p>
-<h2 id="4-基于-Versal-NoC-的设计"><a href="#4-基于-Versal-NoC-的设计" class="headerlink" title="4 基于 Versal NoC 的设计"></a>4 基于 Versal NoC 的设计</h2><hr>
-<p>与 SoC 中的 NoC 相比，Versal NoC 是可编程的，其拓扑，带宽和 QoS 都可以自定义，其允许所有可能的点对点通信。 </p>
-<h2 id="5-结论"><a href="#5-结论" class="headerlink" title="5 结论"></a>5 结论</h2><hr>
-<p>使用可编程逻辑实现 NoC 时，NoC 能够提供的带宽与计算节点的放置位置相关，而 NoC 硬核能够提供的带宽则不受位置影响。NoC 的编程和优化远快于可编程逻辑布局布线。</p>
-<img title="" src="https://s21.ax1x.com/2024/11/13/pAcvxRx.png" alt="" data-align="center">
-
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
-      <categories>
-        <category>gallery</category>
-      </categories>
-      <tags>
-        <tag>Paper Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git使用教程</title>
     <url>/2024/11/12/Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<h3 id="1-Git-使用教程"><a href="#1-Git-使用教程" class="headerlink" title="1. Git 使用教程"></a>1. Git 使用教程</h3><h4 id="1-1-创建与提交"><a href="#1-1-创建与提交" class="headerlink" title="1.1 创建与提交"></a>1.1 创建与提交</h4><ol>
@@ -99,6 +51,54 @@
 ]]></content>
       <tags>
         <tag>工具使用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NoC of Xilinx ACAP</title>
+    <url>/2024/11/13/NoC-of-Xilinx-ACAP/</url>
+    <content><![CDATA[<h1 id="Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture"><a href="#Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture" class="headerlink" title="Network-on-Chip Programmable Platform in VersalTM ACAP Architecture"></a>Network-on-Chip Programmable Platform in VersalTM ACAP Architecture</h1><h2 id="1-INTRO"><a href="#1-INTRO" class="headerlink" title="1 INTRO"></a>1 INTRO</h2><p>在 FPGA上设计的电路日渐复杂，存储器带宽日渐增加和设计者更加关注面向需求的专用电路设计这三个因素共同推动着 FPGA 架构的演进。</p>
+<p>随着制程提升，金属的线电阻不断增加，造成互连延迟增加，FPGA 布线时关键路径上的时延增加。</p>
+<p>传统的 FPGA 互连面临两个问题，一是逻辑资源，二是设计的最高频率和关键路径时延无法被事先得知。<br>2 NoC</p>
+<hr>
+<ul>
+<li>支持 QoS</li>
+</ul>
+<p>Quality of service is the ability to provide different priorities to different applications, users, or data <a href="https://en.wikipedia.org/wiki/Traffic_flow_(computer_networking)">flows</a>, or to guarantee a certain level of performance to a data flow.</p>
+<ul>
+<li>包含虚拟通道</li>
+</ul>
+<h2 id="3-Versal-NoC"><a href="#3-Versal-NoC" class="headerlink" title="3 Versal NoC"></a>3 Versal NoC</h2><p>Versal 架构</p>
+<img title="arch" src="https://s21.ax1x.com/2024/11/13/pAcvzz6.png" alt="" data-align="center">
+
+<p>NoC 在芯片中扮演两个角色：</p>
+<ol>
+<li>为芯片中所有资源提供永久的可统一寻址的互连</li>
+<li>可以代替可编程逻辑提供开关和路由功能</li>
+</ol>
+<p>Versal NoC 数据包传输结构：AXI&#x2F;AXI-S</p>
+<img title="" src="https://s21.ax1x.com/2024/11/13/pAcvvJ1.png" alt="loading-ag-351" data-align="center">
+
+<p>Versal NoC 拓扑：</p>
+<img title="" src="https://s21.ax1x.com/2024/11/13/pAcxpQK.png" alt="" data-align="center">
+
+<p>Versal NoC 可以分为两部分：HNoC 和 VNoC</p>
+<p>HNoC 水平分布，上下连接芯片中的硬核，VNoC 垂直分布，连接可编程结构。 VNoC 不是独立的互连结构，其像 DSP 一样作为一个硬核集成在可编程结构中。</p>
+<p>Versal NoC 的一个重要作用是高效管理各模块对 DDR 的访问，VNoC 的频率和带宽与 DDR 相匹配：</p>
+<p><mark>For example, a device with 64 bit DDR4 3200 has 25.6GBps bandwidth. A VNoC running at 1GHz has two physical channels supporting upto 16GBps each per direction.</mark></p>
+<p>NoC 支持可编程交织式的使用内存，将所有内存看做一个存储池，交织式的在每一个 DDR 上操作 128B 到 4KB 的空间。</p>
+<p> Versal NoC 的路由表是可编程的（不同的设计用到的资源和连接不同），NoC 在多个 DIE 上是逻辑统一的。 </p>
+<h2 id="4-基于-Versal-NoC-的设计"><a href="#4-基于-Versal-NoC-的设计" class="headerlink" title="4 基于 Versal NoC 的设计"></a>4 基于 Versal NoC 的设计</h2><hr>
+<p>与 SoC 中的 NoC 相比，Versal NoC 是可编程的，其拓扑，带宽和 QoS 都可以自定义，其允许所有可能的点对点通信。 </p>
+<h2 id="5-结论"><a href="#5-结论" class="headerlink" title="5 结论"></a>5 结论</h2><hr>
+<p>使用可编程逻辑实现 NoC 时，NoC 能够提供的带宽与计算节点的放置位置相关，而 NoC 硬核能够提供的带宽则不受位置影响。NoC 的编程和优化远快于可编程逻辑布局布线。</p>
+<img title="" src="https://s21.ax1x.com/2024/11/13/pAcvxRx.png" alt="" data-align="center">
+
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+      <categories>
+        <category>gallery</category>
+      </categories>
+      <tags>
+        <tag>Paper Notes</tag>
       </tags>
   </entry>
   <entry>
