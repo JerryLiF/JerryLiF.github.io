@@ -1,59 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Git使用教程</title>
-    <url>/2024/11/12/Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h3 id="1-Git-使用教程"><a href="#1-Git-使用教程" class="headerlink" title="1. Git 使用教程"></a>1. Git 使用教程</h3><h4 id="1-1-创建与提交"><a href="#1-1-创建与提交" class="headerlink" title="1.1 创建与提交"></a>1.1 创建与提交</h4><ol>
-<li>在本地创建ssh key：</li>
-</ol>
-<p><code>ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</code></p>
-<ol start="2">
-<li><p>输入上述命令后~&#x2F;.ssh中将出现一个id_rsd.pub文件，将该文件中的key复制到github的ssh key配置页面：</p>
-<img src="https://s21.ax1x.com/2024/11/13/pAcz5uT.png" title="" alt="" data-align="center">
-</li>
-<li><p>输入<code> ssh -T git@github.com</code>确认是否key配置成功</p>
-</li>
-<li><p>配置信息：</p>
-</li>
-</ol>
-<p><code>git config --global user.name &quot;your name&quot;  git config --global user.email &quot;your_email@youremail.com&quot;</code></p>
-<ol start="5">
-<li>在github上创建一个仓库，并在本地关联该仓库，此处有两种办法：</li>
-</ol>
-<p>① 直接将仓库clone到本地，进入仓库目录即可：</p>
-<p><code>git clone git@github.com:JerryLiF/Chiplet_based_DSE_Simulator.git</code></p>
-<p>② 建立一个与github上仓库同名的本地目录，进入该目录并输入<code>git init</code>初始化仓库。而后输入：<code>git remote add origin git@github.com:yourName/yourRepo.git</code>关联GitHub上的远端仓库。</p>
-<p><mark>注意：旧版本git初始化后默认的分支为master，但新版本GithHub默认分支为main，为了保持一致需先将git升级到2.28版本之后，通过<code>git config --global init.defaultBranch main</code>命令进行全局修改。</mark></p>
-<ol start="6">
-<li><p>创建新文件或修改文件后，使用<code>git add *</code>命令将文件提交到暂存区</p>
-</li>
-<li><p>将改动提交到HEAD：<code>git commit -m &quot;备注&quot;</code></p>
-</li>
-<li><p>将改动提交到远程仓库：<code>git push origin 分支名称</code></p>
-</li>
-<li><p>分支操作：</p>
-</li>
-</ol>
-<p>创建新分支：<code>git checkout -b feature_x</code></p>
-<p>切换分支：<code>git checkout master</code></p>
-<p>删除分支：<code>git branch -d feature_x</code></p>
-<h4 id="1-2-更新与合并"><a href="#1-2-更新与合并" class="headerlink" title="1.2 更新与合并"></a>1.2 更新与合并</h4><p>将远端仓库的更新同步到本地：<code>git pull</code></p>
-<p>合并其他分支到当前分支：<code>git merge &lt;branch&gt;</code></p>
-<p>查看两个分支的差异：<code>git diff &lt;source_branch&gt; &lt;target_branch&gt;</code></p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h3 id="2-GitHub使用"><a href="#2-GitHub使用" class="headerlink" title="2. GitHub使用"></a>2. GitHub使用</h3><h4 id="2-1-在vscode中向GitHub提交代码"><a href="#2-1-在vscode中向GitHub提交代码" class="headerlink" title="2.1 在vscode中向GitHub提交代码"></a>2.1 在vscode中向GitHub提交代码</h4><ol>
-<li><p>使用vscode打开本地仓库的文件夹</p>
-</li>
-<li><p>进入源代码管理页面：</p>
-</li>
-</ol>
-<p><img src="https://s21.ax1x.com/2024/11/13/pAczO81.png"></p>
-<h3 id="3-基于Github和Hexo搭建个人博客"><a href="#3-基于Github和Hexo搭建个人博客" class="headerlink" title="3. 基于Github和Hexo搭建个人博客"></a>3. 基于Github和Hexo搭建个人博客</h3><p>常用命令：<br>    hexo new “postName” #新建文章<br>    hexo new page “pageName” #新建页面<br>    hexo generate #生成静态页面至public目录<br>    hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）<br>    hexo deploy #部署到GitHub<br>    hexo help  # 查看帮助<br>    hexo version  #查看Hexo的版本</p>
-]]></content>
-      <tags>
-        <tag>工具使用</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NoC of Xilinx ACAP</title>
     <url>/2024/11/13/NoC-of-Xilinx-ACAP/</url>
     <content><![CDATA[<h1 id="Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture"><a href="#Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture" class="headerlink" title="Network-on-Chip Programmable Platform in VersalTM ACAP Architecture"></a>Network-on-Chip Programmable Platform in VersalTM ACAP Architecture</h1><h2 id="1-INTRO"><a href="#1-INTRO" class="headerlink" title="1 INTRO"></a>1 INTRO</h2><p>在 FPGA上设计的电路日渐复杂，存储器带宽日渐增加和设计者更加关注面向需求的专用电路设计这三个因素共同推动着 FPGA 架构的演进。</p>
@@ -118,5 +65,97 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Git使用教程</title>
+    <url>/2024/11/12/Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="1-Git-使用教程"><a href="#1-Git-使用教程" class="headerlink" title="1. Git 使用教程"></a>1. Git 使用教程</h3><h4 id="1-1-创建与提交"><a href="#1-1-创建与提交" class="headerlink" title="1.1 创建与提交"></a>1.1 创建与提交</h4><ol>
+<li>在本地创建ssh key：</li>
+</ol>
+<p><code>ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</code></p>
+<ol start="2">
+<li><p>输入上述命令后~&#x2F;.ssh中将出现一个id_rsd.pub文件，将该文件中的key复制到github的ssh key配置页面：</p>
+<img src="https://s21.ax1x.com/2024/11/13/pAcz5uT.png" title="" alt="" data-align="center">
+</li>
+<li><p>输入<code> ssh -T git@github.com</code>确认是否key配置成功</p>
+</li>
+<li><p>配置信息：</p>
+</li>
+</ol>
+<p><code>git config --global user.name &quot;your name&quot;  git config --global user.email &quot;your_email@youremail.com&quot;</code></p>
+<ol start="5">
+<li>在github上创建一个仓库，并在本地关联该仓库，此处有两种办法：</li>
+</ol>
+<p>① 直接将仓库clone到本地，进入仓库目录即可：</p>
+<p><code>git clone git@github.com:JerryLiF/Chiplet_based_DSE_Simulator.git</code></p>
+<p>② 建立一个与github上仓库同名的本地目录，进入该目录并输入<code>git init</code>初始化仓库。而后输入：<code>git remote add origin git@github.com:yourName/yourRepo.git</code>关联GitHub上的远端仓库。</p>
+<p><mark>注意：旧版本git初始化后默认的分支为master，但新版本GithHub默认分支为main，为了保持一致需先将git升级到2.28版本之后，通过<code>git config --global init.defaultBranch main</code>命令进行全局修改。</mark></p>
+<ol start="6">
+<li><p>创建新文件或修改文件后，使用<code>git add *</code>命令将文件提交到暂存区</p>
+</li>
+<li><p>将改动提交到HEAD：<code>git commit -m &quot;备注&quot;</code></p>
+</li>
+<li><p>将改动提交到远程仓库：<code>git push origin 分支名称</code></p>
+</li>
+<li><p>分支操作：</p>
+</li>
+</ol>
+<p>创建新分支：<code>git checkout -b feature_x</code></p>
+<p>切换分支：<code>git checkout master</code></p>
+<p>删除分支：<code>git branch -d feature_x</code></p>
+<h4 id="1-2-更新与合并"><a href="#1-2-更新与合并" class="headerlink" title="1.2 更新与合并"></a>1.2 更新与合并</h4><p>将远端仓库的更新同步到本地：<code>git pull</code></p>
+<p>合并其他分支到当前分支：<code>git merge &lt;branch&gt;</code></p>
+<p>查看两个分支的差异：<code>git diff &lt;source_branch&gt; &lt;target_branch&gt;</code></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h3 id="2-GitHub使用"><a href="#2-GitHub使用" class="headerlink" title="2. GitHub使用"></a>2. GitHub使用</h3><h4 id="2-1-在vscode中向GitHub提交代码"><a href="#2-1-在vscode中向GitHub提交代码" class="headerlink" title="2.1 在vscode中向GitHub提交代码"></a>2.1 在vscode中向GitHub提交代码</h4><ol>
+<li><p>使用vscode打开本地仓库的文件夹</p>
+</li>
+<li><p>进入源代码管理页面：</p>
+</li>
+</ol>
+<p><img src="https://s21.ax1x.com/2024/11/13/pAczO81.png"></p>
+<h3 id="3-基于Github和Hexo搭建个人博客"><a href="#3-基于Github和Hexo搭建个人博客" class="headerlink" title="3. 基于Github和Hexo搭建个人博客"></a>3. 基于Github和Hexo搭建个人博客</h3><p>常用命令：<br>    hexo new “postName” #新建文章<br>    hexo new page “pageName” #新建页面<br>    hexo generate #生成静态页面至public目录<br>    hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）<br>    hexo deploy #部署到GitHub<br>    hexo help  # 查看帮助<br>    hexo version  #查看Hexo的版本</p>
+]]></content>
+      <tags>
+        <tag>工具使用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CMDS</title>
+    <url>/2025/02/27/CMDS/</url>
+    <content><![CDATA[<p>INTRO</p>
+<p>ZigZag, Timeloop, Maestro等著名的工作在优化DNN的数据流时将每一层的都看作是一个独立部分，没有考虑到层切换时不同数据流造成的影响，特别是不同数据流对内存使用方式的影响，这可能造成内存读写时的能量浪费。本文提出了一种跨层内存感知数据流调度器，考虑了不同层的内存布局需求对时延和功耗的影响，相比于现有工作能够得到能效更好的数据流安排方案。</p>
+<h2 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h2><h3 id="multi-bank-memory-arch"><a href="#multi-bank-memory-arch" class="headerlink" title="multi-bank memory arch"></a>multi-bank memory arch</h3><p><img src="https://s21.ax1x.com/2025/02/27/pE3cQdU.png"></p>
+<p>BD：bank的位宽</p>
+<p>PD：外部对mem的读写位宽</p>
+<p>MD：整个mem的物理位宽 &#x3D; BankNum * BD</p>
+<p><img src="https://s21.ax1x.com/2025/02/27/pE30F3V.png"></p>
+<p>上图展示了内存布局对不同数据流产生的影响：</p>
+<p>BD:</p>
+<p>Case1中Conv1层的输出，每4个同OX的数据存储到1个Bank的同一行，当Conv2需要每个周期消耗4个相同OY的数据时，每次读Bank都只有25%的有效数据。这会导致PE获取的数据不足，增加延迟 ；访问mem的总功耗增加。</p>
+<p>Case2中Conv1按OY存储就可以保证两层的memory layout兼容。</p>
+<p>PD：</p>
+<p>multi-bank 的组合支持不同的WPD和RPD。例如case2中数据按OY &#x3D; 4的方式存储在Bank中，其他OX可以存储在不同bank的相同行，也可以存储在同一bank的不同行，这取决于Conv2采用的数据流。可用的PD选择必须包含可用的BD。</p>
+<p>MD:</p>
+<p>Case2采用了OX&#x3D;2 ，K&#x3D;2的内存布局，充分利用了MD的宽度同时支持特定的WPD和RPD。</p>
+<h3 id="EXPERIMENT"><a href="#EXPERIMENT" class="headerlink" title="EXPERIMENT"></a>EXPERIMENT</h3><p>对比对象：无灵活数据接口的ACC &amp; 具有重排序缓冲区的ACC</p>
+<h4 id="有效PD"><a href="#有效PD" class="headerlink" title="有效PD"></a>有效PD</h4><p>PD资源利用率不足有两种可能：</p>
+<ol>
+<li><p>给定数据流与BD数据布局不匹配</p>
+</li>
+<li><p>给定数据流与MD布局不匹配导致一次只能同时访问较少的Bank</p>
+</li>
+</ol>
+<p>总之就是PE所需的数据和内存中的数据布局导致PD的利用不充分，进而导致能量和功耗损失。为了评估这一功耗损失，文章提出了计算“有效PD”的方法：</p>
+<img src="cf0e5451-cba6-4141-9afe-1960d93540d6.png" title="" alt="cf0e5451-cba6-4141-9afe-1960d93540d6" data-align="center">
+
+<p>将有效PD带入CMDS即可更加实际的评估内存布局带来的影响。</p>
+<h4 id="Reshuffling-buffer-cost"><a href="#Reshuffling-buffer-cost" class="headerlink" title="Reshuffling buffer cost"></a>Reshuffling buffer cost</h4><p>重新排序缓冲区放置在内存和PE之间，所需的寄存器数量为按照第 j 层 SU 的 RPD 数据布局重组数据而必须缓冲的第 i 层最终输出的数量。在不采取内存感知数据流的情况下，可以避免低效的内存访问，但有面积开销。</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>将（1）ZigZag框架+含有Reshuffling buffer的架构和（2）ZigZag框架+普通mem架构与（3）CMDS框架+普通mem架构进行对比，可以发现（3）在使得总能耗和延迟仅有2-4%增加的情况下可以比（1）减小3-11%的面积开销，比（2）减少10-500%的能量延迟开销。</p>
+<p>通过实验，本文还发现采用BD&lt;PD&lt;MD，且MD较大的参数会取得较好的效果。</p>
+<p>存储器组的数量、CMDS 的灵活性和实现存储器组所需的面积之间存在权衡。</p>
+]]></content>
+      <tags>
+        <tag>Paper Notes</tag>
+      </tags>
   </entry>
 </search>
