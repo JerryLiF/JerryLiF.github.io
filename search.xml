@@ -136,6 +136,38 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/09/02/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>ZigZag</title>
+    <url>/2025/03/03/ZigZag/</url>
+    <content><![CDATA[<p>loop blocking： 将某一维的for循环分配到特定的存储层级中</p>
+<p>loop ordering： 在一个存储级别内交换for循环的排序</p>
+<p>loop spatial unrolling： 将for循环空间并行展开</p>
+]]></content>
+      <categories>
+        <category>gallery</category>
+      </categories>
+      <tags>
+        <tag>Paper Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NoC of Xilinx ACAP</title>
     <url>/2024/11/13/NoC-of-Xilinx-ACAP/</url>
     <content><![CDATA[<h1 id="Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture"><a href="#Network-on-Chip-Programmable-Platform-in-VersalTM-ACAP-Architecture" class="headerlink" title="Network-on-Chip Programmable Platform in VersalTM ACAP Architecture"></a>Network-on-Chip Programmable Platform in VersalTM ACAP Architecture</h1><h2 id="1-INTRO"><a href="#1-INTRO" class="headerlink" title="1 INTRO"></a>1 INTRO</h2><p>在 FPGA上设计的电路日渐复杂，存储器带宽日渐增加和设计者更加关注面向需求的专用电路设计这三个因素共同推动着 FPGA 架构的演进。</p>
@@ -174,38 +206,6 @@
 <h2 id="5-结论"><a href="#5-结论" class="headerlink" title="5 结论"></a>5 结论</h2><hr>
 <p>使用可编程逻辑实现 NoC 时，NoC 能够提供的带宽与计算节点的放置位置相关，而 NoC 硬核能够提供的带宽则不受位置影响。NoC 的编程和优化远快于可编程逻辑布局布线。</p>
 <img title="" src="https://s21.ax1x.com/2024/11/13/pAcvxRx.png" alt="" data-align="center">
-]]></content>
-      <categories>
-        <category>gallery</category>
-      </categories>
-      <tags>
-        <tag>Paper Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/09/02/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>ZigZag</title>
-    <url>/2025/03/03/ZigZag/</url>
-    <content><![CDATA[<p>loop blocking： 将某一维的for循环分配到特定的存储层级中</p>
-<p>loop ordering： 在一个存储级别内交换for循环的排序</p>
-<p>loop spatial unrolling： 将for循环空间并行展开</p>
 ]]></content>
       <categories>
         <category>gallery</category>
