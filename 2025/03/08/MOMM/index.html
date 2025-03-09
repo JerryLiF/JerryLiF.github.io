@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JerryLi">
+
+
+
+
+
+
+
+<title>MOMM | JerryLi&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="https://s21.ax1x.com/2024/11/13/pAgpCLT.jpg">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            <img class="logo-img" src="https://s21.ax1x.com/2024/11/13/pAgShid.jpg" alt="logo_image">
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Gallery</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tags/">Tags</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/">Categories</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Paper-Notes/">
+                            Paper Notes
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                MOMM
+            
+            
+        </div>
+        <span class="post-date">
+            3月 8, 2025
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="https://s21.ax1x.com/2025/03/09/pEN9Q0J.png" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h2 id="INTRO"><a href="#INTRO" class="headerlink" title="INTRO"></a>INTRO</h2><p>NPU中的全局缓存通常组织为multi-bank的架构，本文针对减少片外访存和隐藏DRAM访问延迟的目标，提出了一种片上内存管理技术。</p>
+<p>将权重缓存和输入输出缓存区分开来可以简化设计，权重缓存只需要使用double buffer设计就可以隐藏DRAM访问延迟；特征图像缓存则需要仔细的规划预取下一个输入段、读取当前输入段和写入输出段的顺序。</p>
+<p>DRAM访问延迟的评估通过使用 Ramulator对 DRAM 仿真结果进行回归得到。</p>
+<img src="https://s21.ax1x.com/2025/03/09/pEN9Mm4.png" title="" alt="" data-align="center">
+
+<h2 id="MOMM"><a href="#MOMM" class="headerlink" title="MOMM"></a>MOMM</h2><p>MOMM的控制体系如图3所示：给出当前Bank状态和NN的信息，MOM manager 给出数据tile的映射方案、NPU处理顺序和新的Bank 状态。</p>
+<img src="https://s21.ax1x.com/2025/03/09/pEN9uXF.png" title="" alt="" data-align="center">
+
+<p>MOMM考虑不同的MEM Banks使用策略对DRAM访问量和DRAM访问延迟的影响（2个目标函数）：</p>
+<h3 id="DRAM-first-Store"><a href="#DRAM-first-Store" class="headerlink" title="DRAM-first Store"></a>DRAM-first Store</h3><p>当片上缓存不足以存储整个输出特征图像时，优先将溢出的部分加载到DRAM中，减少存储OutFMAP的Bank数量。</p>
+<p>如图4所示，使用简单的DRAM最低优先级方式会在步骤5时等待$ I_4$加载；使用DFS策略时，对DRAM来说输入读取和输出写入有访问竞争，如果下一次计算不访问预取数据，则可以延迟预取，不会降低性能。</p>
+<img src="https://s21.ax1x.com/2025/03/09/pEN9l79.png" title="" alt="" data-align="center">
+
+<h3 id="※DRAM-Access-Minimization-Policy"><a href="#※DRAM-Access-Minimization-Policy" class="headerlink" title="※DRAM Access Minimization Policy"></a>※DRAM Access Minimization Policy</h3><p>通过预设OFM可以占用的最大Bank数目决定Bank的使用顺序，如图5所示，当WMEM能够一次性缓存所有WGT时，a的DRAM访问次数更少，反之b更少。</p>
+<img src="https://s21.ax1x.com/2025/03/09/pEN9n6U.png" title="" alt="" data-align="center">
+
+<h3 id="MIN-Access-framework"><a href="#MIN-Access-framework" class="headerlink" title="MIN Access framework"></a>MIN Access framework</h3><p>确定使用的策略和存储OFM的bank数目→确定需要load input的bank数目→确定需要参与处理的banks数目→更新bank状态</p>
+<img src="https://s21.ax1x.com/2025/03/09/pENPCIs.png" title="" alt="" data-align="center">
+
+<h3 id="※DRAM-Access-Hiding-Policy"><a href="#※DRAM-Access-Hiding-Policy" class="headerlink" title="※DRAM Access Hiding Policy"></a>※DRAM Access Hiding Policy</h3><p>HIDE策略的目的是通过预取数据来隐藏DRAM的访问延迟，如果存在未加载的输入Tile，HIDE策略会在每一个控制步骤中至少保留一个可用的存储库用于预取。</p>
+<p>MIN 策略处理所有可能的输入Tile，以最大限度地重复使用滤波器权值。HIDE 策略通过估算决策后的 PE 延迟来确定需要处理的输入瓦片数量。两者的对比如下图所示</p>
+<img src="https://s21.ax1x.com/2025/03/09/pEN9mlT.png" title="" alt="图7" data-align="center">
+
+<h3 id="Multi-path-NN"><a href="#Multi-path-NN" class="headerlink" title="Multi-path NN"></a>Multi-path NN</h3><img title="" src="https://s21.ax1x.com/2025/03/09/pEN9Vf0.png" alt="" data-align="center">
+
+<p>面对具有多个分支的网络时，可能的方案选择非常复杂。假设 FMEM 库的数量为 N，网络并行路径的数量为B，那么可能的方案选择有$B!*(N-1)^{B-1}$种，$B!$是所有可能的处理顺序数，$（N-1）^{B-1}$是每条路径中可以留下输入Tile数目的总情况数。总情况数目非常庞大，本文提出了一种贪婪启发式来减少需要比较的案例数量，对于给定的路径排序，我们确定从第一条路径依次离开的输入Tile的数量，对所有选定的案例进行比较，以找到关于路径处理顺序和从每条路径离开的输入Tile数量的最佳决策。</p>
+<h2 id="Hybrid-Fusion"><a href="#Hybrid-Fusion" class="headerlink" title="Hybrid Fusion"></a>Hybrid Fusion</h2><p>本文提出了一种介于完全融合和按顺序处理之间的混合融合方案，实质上就是需要在片上存储的图像大于FMEM但是比整张图像小。感觉这个点比较水。</p>
+<img src="https://s21.ax1x.com/2025/03/09/pEN9epV.png" title="" alt="" data-align="center">
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2025/03/03/ZigZag/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+                All rights reserved.
+                <br>
+            
+            
+                © JerryLi | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
